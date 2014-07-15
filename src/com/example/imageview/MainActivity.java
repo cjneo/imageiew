@@ -2,6 +2,8 @@ package com.example.imageview;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import android.net.Uri;
@@ -22,12 +24,14 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	ImageView iv_image;
 	Bitmap newbmp;
+	static TextView mytext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button buttonGetPicture = (Button)findViewById(R.id.get_picture);
-         iv_image = (ImageView)findViewById(R.id.image);
+        Button buttonstart =  (Button)findViewById(R.id.startgame);
+        // iv_image = (ImageView)findViewById(R.id.image);
         buttonGetPicture.setOnClickListener(
         		new View.OnClickListener() {
 					
@@ -45,7 +49,7 @@ public class MainActivity extends Activity {
 
         int width = metric.widthPixels;  // 宽度（PX）
         int height = metric.heightPixels;  // 高度（PX)
-        TextView mytext = (TextView)findViewById(R.id.mytext); 
+         mytext = (TextView)findViewById(R.id.mytext); 
         mytext.setText("width:"+width+";"+"height:"+height);
     }
 
@@ -76,7 +80,7 @@ public class MainActivity extends Activity {
                         //释放原始图片占用的内存，防止out of memory异常发生
                        // photo.recycle();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                        iv_image.setImageBitmap(smallpic);
+                   //     iv_image.setImageBitmap(smallpic);
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -100,7 +104,7 @@ public class MainActivity extends Activity {
   
         int w = bitmap.getWidth(); // 得到图片的宽，高  
         int h = bitmap.getHeight();  
-  
+        mytext.setText("width:"+w+";"+"height:"+h);
         int wh = w > h ? h : w;// 裁切后所取的正方形区域边长  
   
         int retX = w > h ? (w - h) / 2 : 0;// 基于原图，取正方形左上角x坐标  
@@ -119,4 +123,27 @@ public class MainActivity extends Activity {
         return bmp;// Bitmap.createBitmap(bitmap, retX, retY, wh, wh, null,  
                     // false);  
     }  
+    
+    public static List<ImagePiece> split(Bitmap bitmap, int xPiece, int yPiece) {    
+        
+        List<ImagePiece> pieces = new ArrayList<ImagePiece>(xPiece * yPiece);    
+        int width = bitmap.getWidth();    
+        int height = bitmap.getHeight();    
+        int pieceWidth = width / 3;    
+        int pieceHeight = height / 3;    
+        for (int i = 0; i < yPiece; i++) {    
+            for (int j = 0; j < xPiece; j++) {    
+                ImagePiece piece = new ImagePiece();    
+                piece.index = j + i * xPiece;    
+                int xValue = j * pieceWidth;    
+                int yValue = i * pieceHeight;    
+                piece.bitmap = Bitmap.createBitmap(bitmap, xValue, yValue,    
+                        pieceWidth, pieceHeight);    
+                pieces.add(piece);    
+            }    
+        }    
+    
+        return pieces; 
+    
+    }
 }
