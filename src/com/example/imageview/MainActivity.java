@@ -3,7 +3,7 @@ package com.example.imageview;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import android.R;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
         int width = metric.widthPixels;  // 宽度（PX）
         int height = metric.heightPixels;  // 高度（PX)
         TextView mytext = (TextView)findViewById(R.id.mytext); 
+        mytext.setText("width:"+width+";"+"height:"+height);
     }
 
 
