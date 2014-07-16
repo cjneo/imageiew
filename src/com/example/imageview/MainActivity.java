@@ -9,6 +9,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,15 +22,19 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	ImageView iv_image;
@@ -98,7 +106,39 @@ public class MainActivity extends Activity {
         
         gridView.setAdapter(adapter);  
           
-          
+        
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+@Override
+            	public void onItemClick(AdapterView<?> parent, View view,  
+            	        int position, long id) {  
+            	    // 传递选中的position到adapter里去重绘GridView当前列的背景色  
+            	    // gView.setAdapter(new dataAdapter(position));  
+            	    
+            	    for (int i = 0; i < parent.getCount(); i++) {  
+            	        if (position == i) {// 当前选中的item改变背景色  
+            	            view.setBackgroundColor(Color.parseColor("#FFF8D7"));  
+            	        } else {  
+            	            // 获取未选中的item  
+            	            View v = parent.getChildAt(i);  
+            	            v.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            	            
+            	        }
+            	        if(position==parent.getCount()-1)
+                        {
+                                ListAdapter la = gridView.getAdapter();
+                                HashMap<String, Object> item = new HashMap<String, Object>();
+                                item.put("imageItem", R.drawable.yw);
+                                int i=position+1;
+                                item.put("textItem", "text" + i);
+                                items.add(item);
+                                ((SimpleAdapter)la).notifyDataSetChanged();
+                        }
+            	    }  
+            	}  
+                
+        }); 
+      
           
       //  使用SimpeAdapter添加数据  
       /* for(int i=0;i<9;i++){  

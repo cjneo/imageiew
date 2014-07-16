@@ -21,6 +21,8 @@ public class MyAdapter extends BaseAdapter {
     public final class griditemview{
     	public ImageView image;
     	public TextView text;
+    	
+    	 int clicknum ;
     }
     public MyAdapter(Context context,String[] data, ImagePiece[] imgId) {
         super();
@@ -28,7 +30,7 @@ public class MyAdapter extends BaseAdapter {
         this.imagearray = imgId;
         this.context = context;
         
-        inflater=LayoutInflater.from(context);
+        inflater=LayoutInflater.from(this.context);
     }
 
     @Override
@@ -49,12 +51,12 @@ public class MyAdapter extends BaseAdapter {
         return position;
     }
     
-        
+
     
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-//        ���holder�Լ�holder������tv��img�����ʵ��
+//        锟斤拷锟絟older锟皆硷拷holder锟斤拷锟斤拷锟斤拷tv锟斤拷img锟斤拷锟斤拷锟绞碉拷锟�
         griditemview myitem =null;
         if(convertView==null){
             myitem = new griditemview();
@@ -70,11 +72,12 @@ public class MyAdapter extends BaseAdapter {
             myitem=(griditemview) convertView.getTag();
             
         }
-//        Ϊholder�е�tv��img��������
+//        为holder锟叫碉拷tv锟斤拷img锟斤拷锟斤拷锟斤拷锟斤拷
   
        // myitem.image.setImageResource(imgId[position]);
      myitem.image.setImageBitmap(imagearray[position].bitmap);
-
+     
+    
         return convertView;
     }
 
