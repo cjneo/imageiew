@@ -2,6 +2,8 @@ package com.example.imageview;
 
 
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MyAdapter extends BaseAdapter {
-
+	 static List<ImagePiece> myimagelist;
     private String data[]=null;
-    private int imgId[]=null;
+    private ImagePiece imagearray[]=null;
     private Context context=null;
     private LayoutInflater inflater=null;
-    public MyAdapter(Context context,String[] data, int[] imgId) {
+    public final class griditemview{
+    	public ImageView image;
+    	public TextView text;
+    }
+    public MyAdapter(Context context,String[] data, ImagePiece[] imgId) {
         super();
         this.data = data;
-        this.imgId = imgId;
+        this.imagearray = imgId;
         this.context = context;
         
         inflater=LayoutInflater.from(context);
@@ -28,7 +34,7 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return data.length;
+        return imagearray.length;
     }
 
     @Override
@@ -42,47 +48,33 @@ public class MyAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         return position;
     }
-    private class Holder{
+    
         
-        TextView tv=null;
-        ImageView img=null;
-        public TextView getTv() {
-            return tv;
-        }
-        public void setTv(TextView tv) {
-            this.tv = tv;
-        }
-        public ImageView getImg() {
-            return img;
-        }
-        public void setImg(ImageView img) {
-            this.img = img;
-        }
-        
-    }
+    
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-//        »ñµÃholderÒÔ¼°holder¶ÔÏóÖÐtvºÍimg¶ÔÏóµÄÊµÀý
-        Holder holder;
+//        ï¿½ï¿½ï¿½holderï¿½Ô¼ï¿½holderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tvï¿½ï¿½imgï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
+        griditemview myitem =null;
         if(convertView==null){
-            
+            myitem = new griditemview();
             
             convertView=inflater.inflate(R.layout.gridview_item, null);
-            holder=new Holder();
-            holder.tv=(TextView) convertView.findViewById(R.id.gridview_text);
-            holder.img=(ImageView) convertView.findViewById(R.id.gridview_img);
             
-            convertView.setTag(holder);
+          
+            myitem.image=(ImageView) convertView.findViewById(R.id.gridview_img);
+            
+            convertView.setTag(myitem);
             
         }else{
-            holder=(Holder) convertView.getTag();
+            myitem=(griditemview) convertView.getTag();
             
         }
-//        ÎªholderÖÐµÄtvºÍimgÉèÖÃÄÚÈÝ
-        holder.tv.setText(data[position]);
-        holder.img.setImageResource(imgId[position]);
-//        ×¢Òâ  Ä¬ÈÏÎª·µ»Ønull,±ØÐëµÃ·µ»ØconvertViewÊÓÍ¼
+//        Îªholderï¿½Ðµï¿½tvï¿½ï¿½imgï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  
+       // myitem.image.setImageResource(imgId[position]);
+     myitem.image.setImageBitmap(imagearray[position].bitmap);
+
         return convertView;
     }
 
