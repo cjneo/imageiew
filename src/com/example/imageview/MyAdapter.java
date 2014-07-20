@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -76,8 +77,26 @@ public class MyAdapter extends BaseAdapter {
   
        // myitem.image.setImageResource(imgId[position]);
      myitem.image.setImageBitmap(imagearray[position].bitmap);
-     
-    
+/*     
+    myitem.image.setOnClickListener(
+    		new View.OnClickListener(){
+
+		@Override
+		public void onClick(View arg0) {
+			;
+		}
+    	
+    });
+    */
+     myitem.image.setOnTouchListener(new View.OnTouchListener(){
+    	
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+     });
         return convertView;
     }
 

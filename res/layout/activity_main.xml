@@ -1,68 +1,63 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	
-	>
-	   
-      <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:id="@+id/l_control">     
-      <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:id="@+id/ll_control">               
-    <TextView
-       android:id="@+id/mytext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/concrete" >
 
-    <Button
-	android:id="@+id/get_picture"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="get picture" 
-	/>
-     <Button
-	android:id="@+id/startgame"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="start game" 
-	/>
-     </LinearLayout>
-     <ImageView
-	    android:id="@+id/image"
-	    android:layout_width="80dp"
-	    android:layout_height = "80dp"
-	    android:scaleType ="fitCenter"
-	    android:contentDescription="hello"
-	/>
-  </LinearLayout>
-   
-	<!--  <ImageView
-	    android:id="@+id/image"
-	    android:layout_width="fill_parent"
-	    android:layout_height = "fill_parent"
-	    android:scaleType ="fitCenter"
-	    android:contentDescription="hello"
-	/>
-   -->
-    
-      <GridView
+    <LinearLayout
+        android:id="@+id/l_control"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <LinearLayout
+            android:id="@+id/ll_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <Button
+                android:id="@+id/get_picture"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@color/silver"
+                android:textSize="18dp"
+                
+                android:text="@string/get_picture" />
+
+            <Button
+                android:id="@+id/startgame"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="@color/silver"
+                android:textSize="18dp"
+                android:text="@string/start_game" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/hello_world"
+           
+            android:scaleType="fitCenter" 
+            />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/grid_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/grid_view"
+        android:layout_below="@id/l_control"
         android:layout_margin="5dip"
-       
-        android:numColumns="3"
-       android:layout_below="@id/l_control"
         android:horizontalSpacing="0dp"
-        android:verticalSpacing="0dp"/>
+        android:listSelector="@null"
+        android:numColumns="3"
+        android:verticalSpacing="0dp" />
 
 </RelativeLayout>
