@@ -57,7 +57,6 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-//        锟斤拷锟絟older锟皆硷拷holder锟斤拷锟斤拷锟斤拷tv锟斤拷img锟斤拷锟斤拷锟绞碉拷锟�
         griditemview myitem =null;
         if(convertView==null){
             myitem = new griditemview();
@@ -73,21 +72,9 @@ public class MyAdapter extends BaseAdapter {
             myitem=(griditemview) convertView.getTag();
             
         }
-//        为holder锟叫碉拷tv锟斤拷img锟斤拷锟斤拷锟斤拷锟斤拷
   
-       // myitem.image.setImageResource(imgId[position]);
      myitem.image.setImageBitmap(imagearray[position].bitmap);
-/*     
-    myitem.image.setOnClickListener(
-    		new View.OnClickListener(){
 
-		@Override
-		public void onClick(View arg0) {
-			;
-		}
-    	
-    });
-    */
      myitem.image.setOnTouchListener(new View.OnTouchListener(){
     	
 
