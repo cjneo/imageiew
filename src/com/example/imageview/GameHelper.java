@@ -4,12 +4,9 @@ import java.util.Random;
 
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.content.res.Resources;
 
 public class GameHelper {
 	MainActivity mMainActivity;
@@ -25,7 +22,6 @@ public class GameHelper {
 		int count = 0;
 		int direction[] = new int[20];
 		int zeroposition = 8;
-		int tmp;
 		int movenum = 0;
 		for (int i = 0; i <= 8; i++) {
 			if (serialnum[i] == 0) {
@@ -86,18 +82,13 @@ public class GameHelper {
 
 		int serialnum[] = { 7, 6, 3, 5, 2, 8, 4, 1, 0 };
 		boolean exist[] = new boolean[9];
-		boolean flag = false;
-		int count = 0, num;
 		for (int i = 0; i < 9; i++) {
 			exist[i] = false;
 		}
 
 		serialnum = changegame(serialnum);
-		ImagePiece tmpimagepiece = new ImagePiece();
-
 		BaseAdapter la = (BaseAdapter) mMainActivity.gridView.getAdapter();
 		Resources res = mMainActivity.getResources();
-		Drawable blankdrawble = res.getDrawable(R.drawable.blank);
 		mMainActivity.blankimage = BitmapFactory.decodeResource(res,
 				R.drawable.blank);
 
@@ -129,9 +120,20 @@ public class GameHelper {
 
 						/*
 						 * It means : up, down, left, right;
+						 * 0,1,2
+						 * 3,4,5
+						 * 6,7,8
+						 * 
 						 */
+						int up=0,down=1,left=2,right=3;
 						int direction[] = { position - 3, position + 3,
 								position - 1, position + 1 };
+						if(position==2||position==5){
+						    direction[right]=-1;
+						} else if(position==3||position==6){
+						    direction[left]=-1;
+						}
+						    
 						boolean changeok = false;
 						int changenum = 0;
 						for (int i = 0; i <= 3; i++) {

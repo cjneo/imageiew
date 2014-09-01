@@ -1,11 +1,9 @@
 package com.example.imageview;
 
-import java.util.HashMap;
 import java.util.List;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -13,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
@@ -30,9 +27,6 @@ public class MainActivity extends Activity {
 	static Bitmap smallpic;
 	public GameHelper mGameHelper;
 	private MyAdapter adapter = null;
-	private List<HashMap<String, Object>> list = null;
-	private HashMap<String, Object> map = null;
-
 	private String data[] = new String[9];
 	ImagePiece lastbitmap = null;
 	Button buttonGetPicture;
@@ -53,7 +47,6 @@ public class MainActivity extends Activity {
 		iv_image = (ImageView) findViewById(R.id.image);
 		// iv_image.setVisibility(View.GONE);
 		Resources res = getResources();
-		Drawable blankdrawble = res.getDrawable(R.drawable.blank);
 		blankimage = BitmapFactory.decodeResource(res, R.drawable.blank);
 		mGameHelper = new GameHelper(this);
 		buttonGetPicture.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +86,6 @@ public class MainActivity extends Activity {
 		lastbitmap = new ImagePiece();
 		lastbitmap = myimagelist.get(8);
 		Resources res = getResources();
-		Drawable blankdrawble = res.getDrawable(R.drawable.blank);
 		blankimage = BitmapFactory.decodeResource(res, R.drawable.blank);
 		lastbitmap = myimagelist.get(8);
 		ImagePiece tmppiece = new ImagePiece();
@@ -123,7 +115,6 @@ public class MainActivity extends Activity {
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
 			case 0:
-				ContentResolver resolver = getContentResolver();
 
 				Uri originalUri = data.getData();
 
@@ -138,10 +129,6 @@ public class MainActivity extends Activity {
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inJustDecodeBounds = true;
 				BitmapFactory.decodeFile(strRingPath, options);
-				int imageHeight = options.outHeight;
-				int imageWidth = options.outWidth;
-				String imageType = options.outMimeType;
-
 				Bitmap photo = ImageHelper.decodeSampledBitmapFromResource(
 						strRingPath, 400, 400);
 				if (photo != null) {
