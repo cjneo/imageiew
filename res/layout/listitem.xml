@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/MyListItem"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/concrete"
+    android:orientation="horizontal"
+    android:paddingBottom="3dip"
+    android:paddingLeft="10dip" >
+
+    <TextView
+        android:id="@+id/gameuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dip"
+        android:gravity="center"
+        android:textColor="@color/clouds"
+        android:textSize="20dp" />
+
+    
+      <TextView
+        android:id="@+id/createtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dip"
+        android:gravity="center"
+         android:layout_below="@id/gameuser"
+        android:textColor="@color/clouds"
+        android:textSize="10dp" />
+    
+    <TextView
+        android:id="@+id/gametime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:gravity="right"
+        android:textColor="@color/clouds"
+        android:textSize="30dip" />
+
+</RelativeLayout>

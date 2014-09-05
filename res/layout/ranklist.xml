@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/concrete" >
+
+    <LinearLayout
+        android:id="@+id/l_control"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/ranklistedit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/concrete"
+            android:gravity="center"
+            android:text="text"
+            android:textColor="@color/clouds"
+            android:focusable="false"
+        android:focusableInTouchMode="false"
+            android:textSize="30dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="@color/clouds" />
+
+        <ProgressBar
+            android:id="@+id/bar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/ranklistview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/clouds"
+            android:dividerHeight="1px"
+            android:fadingEdge="none" >
+        </ListView>
+    </LinearLayout>
+
+</RelativeLayout>

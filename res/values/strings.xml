@@ -4,7 +4,9 @@
     <string name="app_name">Puzzel</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-	<string name="get_picture">Picture</string>
-	<string name="start_game">Start</string>
-	<string name="try_again">Again</string>
+	<string name="get_picture">选择图片</string>
+	<string name="start_game">开始</string>
+	<string name="try_again">重玩</string>
+	<string name="start_rank">排名</string>
+	
 </resources>

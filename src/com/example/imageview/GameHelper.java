@@ -81,6 +81,7 @@ public class GameHelper {
 		mMainActivity.gridView.setFocusableInTouchMode(false);
 
 		int serialnum[] = { 7, 6, 3, 5, 2, 8, 4, 1, 0 };
+		//int serialnum[]={1,2,3,4,5,6,7,8,0};
 		boolean exist[] = new boolean[9];
 		for (int i = 0; i < 9; i++) {
 			exist[i] = false;
@@ -160,19 +161,24 @@ public class GameHelper {
 							mMainActivity.gamesuccess = true;
 						}
 						if (mMainActivity.gamesuccess) {
-							mMainActivity.imagearray[8] = mMainActivity.lastbitmap;
-
-							mMainActivity.buttonStart
-									.setText(R.string.try_again);
-							mMainActivity.gridView.setClickable(false);
-							mMainActivity.gridView.setFocusable(false);
-							mMainActivity.gridView
-									.setFocusableInTouchMode(false);
+							gameSuccess();
 						}
 						(la).notifyDataSetChanged();
 					}
 
 				});
 	}
+	public void gameSuccess(){
+	    mMainActivity.imagearray[8] = mMainActivity.lastbitmap;
+
+        mMainActivity.buttonStart
+                .setText(R.string.try_again);
+        mMainActivity.gridView.setClickable(false);
+        mMainActivity.gridView.setFocusable(false);
+        mMainActivity.gridView
+                .setFocusableInTouchMode(false);
+        mMainActivity.handleGameSuccess();
+	}
+	
 
 }
