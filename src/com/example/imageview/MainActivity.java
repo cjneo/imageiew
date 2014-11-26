@@ -20,10 +20,14 @@ import org.json.JSONObject;
 import com.example.imageview.rankList;
 
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -110,8 +114,13 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent openAlbumIntent = new Intent(Intent.ACTION_GET_CONTENT);
-				openAlbumIntent.setType("image/*");
-				startActivityForResult(openAlbumIntent, 0);
+				openAlbumIntent.setType("image/jpeg");
+				openAlbumIntent.addCategory(Intent.CATEGORY_OPENABLE); 
+				if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.KITKAT){                  
+			        startActivityForResult(openAlbumIntent, 0);    
+			}else{                
+			        startActivityForResult(openAlbumIntent, 0);   
+			} 
 			}
 		});
 		buttonStart.setOnClickListener(new View.OnClickListener() {
@@ -180,23 +189,20 @@ public class MainActivity extends Activity {
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
 			case 0:
-
+			    
 				Uri originalUri = data.getData();
-
-				Cursor cursor = getContentResolver().query(originalUri, null,
-						null, null, null);
-
-				// 第一行第二列保存路径strRingPath
-				cursor.moveToFirst();
-				String strRingPath = cursor.getString(1);
-				cursor.close();
-
+				String strRingPath=ImageHelper.getPath(this, originalUri);
+				//String strRingPath=DocumentsContract.getDocumentId(originalUri);
+				//String strRingPath=Build.VERSION.SDK_INT+"";
+				//String strRingPath= ImageHelper.selectImage(this,data);
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inJustDecodeBounds = true;
 				BitmapFactory.decodeFile(strRingPath, options);
 				Bitmap photo = ImageHelper.decodeSampledBitmapFromResource(
 						strRingPath, 400, 400);
-				if (photo != null) {
+				
+				if (photo != null) 
+				{
 					smallpic = ImageHelper.ImageCrop(photo, false);
 
 					iv_image.setVisibility(View.VISIBLE);
@@ -204,6 +210,7 @@ public class MainActivity extends Activity {
 				}
 				setdata();
 				buttonStart.setText(R.string.start_game);
+			//	buttonStart.setText(strRingPath);
 				buttonStart.setVisibility(View.VISIBLE);
                 buttonStartRank.setText(R.string.start_rank);
 
